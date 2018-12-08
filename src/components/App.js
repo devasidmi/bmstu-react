@@ -8,11 +8,8 @@ import Repos from './ReposList'
 
 class App extends Component {
 
-    constructor(props) {
-        super();
-        this.state = {
-            repos: []
-        }
+    state = {
+        repos: []
     }
 
     searchUserRepos = async(username) => {
