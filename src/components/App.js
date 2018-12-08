@@ -3,6 +3,7 @@ import '../static/css/material.min.css'
 import '../static/css/main.css'
 import {getUserRepos} from '../github'
 import swal from 'sweetalert';
+import _ from 'lodash';
 import Repos from './ReposList'
 
 class App extends Component {
@@ -17,12 +18,21 @@ class App extends Component {
     searchUserRepos = async(username) => {
         try {
             const response = await getUserRepos(username);
-            this.repos = response.data
-            this.setState({repos: response.data});
+            response
+                .data
+                .forEach(el => {
+                    el.created_at = new Date(el.created_at).getTime();
+                })
+            this.setState({
+                repos: _.orderBy(response.data, ['created_at'], ['desc'])
+            });
         } catch (err) {
+            let statusCode = 500;
+            let message = null;
             this.setState({repos: []});
-            const statusCode = err.response.status;
-            let message = '';
+            if (err.response) {
+                statusCode = err.response.status;
+            }
             switch (statusCode) {
                 case 404:
                     message = 'User not found'
