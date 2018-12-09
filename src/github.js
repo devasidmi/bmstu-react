@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-const url = 'https://api.github.com/';
+const url = 'https://api.github.com';
 
-export const getUserRepos = (username)=>{
-    const prefix = `users/${username}/repos`
-    return axios.get(url+prefix);
+export const getUserRepos = (username) => {
+    return axios.get(`${url}/users/${username}/repos`);
 }
