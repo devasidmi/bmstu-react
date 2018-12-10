@@ -1,6 +1,7 @@
 import React from 'react'
 import RepoCard from '../components/RepoCard';
 import '../static/css/main.css'
+import PropTypes from 'prop-types';
 
 const Repos = props => {
     const {reposData} = props;
@@ -19,6 +20,10 @@ const Repos = props => {
             {reposList}
         </div>
     )
+}
+
+Repos.propTypes = {
+    reposData: PropTypes.array.isRequired
 }
 
 export default Repos;

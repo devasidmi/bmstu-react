@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const RepoCard = props => {
     const {repoInfo} = props;
@@ -12,4 +13,9 @@ const RepoCard = props => {
         </div>
     )
 }
+
+RepoCard.propTypes = {
+    repoInfo: PropTypes.object.isRequired
+}
+
 export default RepoCard;
